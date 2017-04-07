@@ -165,6 +165,69 @@ Page({
   },
   onPullDownRefresh: function(e){
     console.log(1);
+  },
+  //跳转到详细页面
+  toDetailPage:function(e){
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../detail/detail?id='+id      
+    });
+  },
+  //跳转到设置页面
+  toSettingPage:function(e){
+    wx.navigateTo({
+      url: '../setting/setting'
+    });
+  },
+  //跳转到主页
+  toHomePage:function(e){
+    var that = this;
+    that.setData({loading:true, themeId:0});
+    console.log('themeId',that.data.themeId);
+    requests.getNewsLatest((data) => {
+      data = utils.correctData(data);
+      console.log(data);
+      that.setData({
+        sliderData: data.top_stories,
+        pageData: data.stories
+      });
+      slideDown.call(this);
+      that.setData({pageShow:'block'});
+    },null,()=>{
+      that.setData({loading:false});
+    });
+  },
+  //跳转到主题的页面
+  toThemePage:function(e){
+    var that = this;
+    that.setData({loading:true, themeId: e.currentTarget.dataset.id});
+    requests.getThemeStories(that.data.themeId, (data) => {
+      data['background'] = utils.fixImgPrefix(data['background']);
+      for(let i=0;i<data.editors.length;i++){
+        data.editors[i]['avatar'] = utils.fixImgPrefix(data.editors[i]['avatar']);
+      }
+      data = utils.correctData(data);
+      that.setData({
+        pageData : data.stories,
+        background : data.background,
+        description : data.description,
+        editorData : data.editors
+      });
+      slideDown.call(this);
+    }, null, () => {
+      that.setData({loading: false});
+    });
+  },
+
+  toCollectPage: function(){
+    var that = this;
+    that.setData({themeId: -1});
+    var pageData = wx.getStorageSync('pageData') || []
+    that.setData({
+      themeId: -1,
+      pageData: pageData
+    });
+    slideDown.call(this);
   }
 });
 
