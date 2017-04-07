@@ -43,3 +43,20 @@
     </scroll-view>
 </view>
 
+<scroll-view wx:if="{{themeId==0}}" scroll-y="true" style="height:100%;width:100%;display:{{pageShow}}" bindscrolltolower="loadingMoreEvent">
+    <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true">
+        <block wx:key="id" wx:for="{{sliderData}}">
+            <swiper-item data-id="{{item.id}}" bindtap="toDetailPage">
+                <image mode="aspectFill" src="{{item.image}}" style="width:100%"></image>
+                <view class="mask"></view>
+                <view class="desc">
+                    <text>{{item.title}}</text>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>    
+</scroll-view>
+
+<scroll-view wx:else scroll-y="true" style="height:100%;width:100%;display:{{pageShow}}">
+
+</scroll-view>
