@@ -105,8 +105,8 @@ Page({
   loadingMoreEvent: function(e){
     if(this.data.loadingMore)
       return;
-    console.log(this.date.currentDate);
-    var date = new Date(Date.parse(this.date.currentDate) - 1000 * 60 * 60 * 24);
+    console.log(this.data.currentDate);
+    var date = new Date(Date.parse(this.data.currentDate) - 1000 * 60 * 60 * 24);
     var that = this;
     var pageData = [];
 
