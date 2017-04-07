@@ -1,10 +1,12 @@
 //app.js
 App({
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    var that = this;
+    //获取应用设置
+    var settingData = wx.getStorageSync(that.constant.SETTING);
+    if(settingData){
+      this.globalData.appSetting = settingData;
+    }
   },
   getUserInfo:function(cb){
     var that = this
@@ -24,7 +26,31 @@ App({
       })
     }
   },
+  //更新应用设置
+  updateupdateAppSetting: function(data){
+    var that = this;
+    try{
+      wx.setStorageSync(that.constant.SETTING, data);
+    }catch(e){
+      return false;
+    }
+    return true;
+  },
+  //获取缓存
+  getCache:function(){
+    return wx.getStorageSync(that.constant.CACHE);
+  },
   globalData:{
-    userInfo:null
-  }
+    userInfo:null,
+    //应用设置
+    appSetting:{
+      theme: 'light',//主题
+      noPicMode: false//无图模式
+    }
+  },
+  constant:{
+    SETTING: 'ZHIHU_SETTING',
+    CACHE: 'ZHIHU_CACHE'
+  },
+  debug: true//调试程序
 })
