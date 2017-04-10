@@ -195,7 +195,7 @@ function correctData(data)
 {
   if(("top_stories" in data)){
     var top_stories = data.top_stories;
-    for(var i=0;i < top_stories;i++){
+    for(var i=0;i < top_stories.length;i++){
       top_stories[i].image = fixImgPrefix(top_stories[i].image);
     }
     data.top_stories = top_stories;

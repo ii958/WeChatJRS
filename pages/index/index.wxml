@@ -44,7 +44,7 @@
 </view>
 
 <scroll-view wx:if="{{themeId==0}}" scroll-y="true" style="height:100%;width:100%;display:{{pageShow}}" bindscrolltolower="loadingMoreEvent">
-    <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true">
+    <swiper class="index-swiper" indicator-dots="true" interval="5000" autoplay="true">
         <block wx:key="id" wx:for="{{sliderData}}">
             <swiper-item data-id="{{item.id}}" bindtap="toDetailPage">
                 <image mode="aspectFill" src="{{item.image}}" style="width:100%"></image>
