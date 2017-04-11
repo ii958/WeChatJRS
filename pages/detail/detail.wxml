@@ -6,5 +6,56 @@
         <view class="desc">
             <text>{{news.title}}</text>
         </view>
+        <text class="cover-source">{{news.image_source}}</text>
+    </view>
+    <view class="black-desc" wx:else>
+        <text>{{news.title}}</text>
+    </view>
+    <view style="padding-bottom: 150rpx;">
+        <block wx:for="{{news.body}}">
+            <view class="article">
+                <view class="title" wx:if="{{item.title && item.title != ''}}">
+                    <text>{{item.title}}</text>
+                </view>
+                <view class="author-info" wx:if="{{(item.avatar && item.avatar != '') || (item.author && item.autor != '') || (item.bio && item.bio != '')}}">
+                    <image wx:if="{{item.avatar && item.avatar != ''}}" src="{{item.avatar}}" class="avatar"></image>
+                    <text wx:if="{{item.author && item.author != ''}}" class="author-name">{{item.author}}</text>
+                    <text wx:if="{{item.bio && item.bio != ''}}" class="author-mark">{{item.bio}}</text>
+                </view>
+                <view class="content" wx:if="{{item.content && item.content.length > 0}}">
+                    <block wx:for="{{item.content}}" wx:for-item="it">
+                        <block wx:if="{{it.type=='p'}}">
+                            <text>{{it.value}}</text>
+                        </block>
+                        <block wx:elif="{{it.type=='img'}}">
+                            <image mode="aspectFill" src="{{it.value}}" data-src="{{it.value}}" bindtap="previewImgEvent"></image>
+                        </block>
+                        <block wx:elif="{{it.type=='pstrong'}}">
+                            <text class="strong">{{it.value}}</text>
+                        </block>
+                        <block wx:elif="{{it.type=='pem'}}">
+                            <text class="em">{{it.value}}</text>
+                        </block>
+                        <block wx:elif="{{it.type=='blockquote'}}">
+                            <text class="qoute">{{it.value}}</text>
+                        </block>
+                        <block wx:else>
+                            <text>{{it.value}}</text>
+                        </block>
+                    </block>
+                </view>
+                <view class="discuss" wx:if="{{item.more && item.more!=''}}">
+                    <navigator url="{{item.more}}">查看知乎讨论</navigator>
+                </view>
+            </view>
+        </block>
+    </view>
+    <!-- 右上角工具 -->
+    <view class="toolbar">
+        <view class="inner">
+            <view class="item" bindtap="showModalEvent">
+                <image src="../../images/share.png"></image>
+            </view>
+        </view>
     </view>
 </view>
