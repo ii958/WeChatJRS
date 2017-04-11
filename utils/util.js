@@ -80,7 +80,7 @@ function parseStory(html, isDecode)
  */
 function parseStoryContent($story, isDecode){
   var content = [];
-  var ps = $story.tap('p').match();
+  var ps = $story.tag('p').match();
   var p,strong,img,blockquote,em;
   if(ps)
   {

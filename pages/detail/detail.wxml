@@ -1,2 +1,10 @@
 <!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view style="display:{{pageShow}}">
+    <view class="header-cover" wx:if="{{news.image}}">
+        <image src="{{news.image}}" mode="aspectFill" style="height:100%"></image>
+        <view class="mask"></view>
+        <view class="desc">
+            <text>{{news.title}}</text>
+        </view>
+    </view>
+</view>
