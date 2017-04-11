@@ -97,7 +97,19 @@
     </view>
     <view class="common-list">
         <block wx:key="id" wx:for="{{pageData}}">
-
+            <view class="list-item {{item.images[0]?'has-img':''}}" data-id="{{item.id}}" bindtap="toDetailPage">
+                <view class="content">
+                    <text>{{item.title}}</text>
+                </view>
+                <image wx:if="{{item.images[0]}}" src="{{item.images[0]}}" class="cover"></image>
+            </view>
         </block>
     </view>
 </scroll-view>
+<loading hidden="{{!loading}}">
+    {{loadingMsg}}
+</loading>
+<modal class="modal" hidden="{{modalMsgHidden}}" no-cancel bindconfirm="modalMsgHiddenEvent">
+    <view style="text-align:center;color:#000;font-weight:bold"> 作者：陈呈</view>
+    <view style="text-align:center;">https://github.com/ii958/WeChatJRS</view>
+</modal>
