@@ -56,6 +56,22 @@
             <view class="item" bindtap="showModalEvent">
                 <image src="../../images/share.png"></image>
             </view>
+            <view class="item" bindtap="reloadEvent">
+                <image src="../../images/refresh.png"></image>
+            </view>
+            <view class="item" bindtap="collectOrNot" wx:if="{{isCollect}}">
+                <image src="../../images/star_yellow.png"></image>
+            </view>
+            <view class="item" bindtap="collectOrNot" wx:else>
+                <image src="../../images/star.png"></image>
+            </view>
+            <view class="item" data-id="{{id}}" bindtap="toCommentPage">
+                <image src="../../images/insert_comment.png"></image>
+                <view class="tip"></view>
+            </view>
+            <view class="item">
+                <image src="../../images/thumb_up.png"></image>
+            </view>
         </view>
     </view>
 </view>
