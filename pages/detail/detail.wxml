@@ -74,4 +74,34 @@
             </view>
         </view>
     </view>
+    <modal class="modal" confirm-text="取消" no-cancel hidden="{{modalHidden}}" bindtap="hideModalEvent">
+        <view class="share-list">
+            <view class="item">
+                <image src="../../images/share_qq.png"></image>
+            </view>
+            <view class="item">
+                <image src="../../images/share_pengyouquan.png"></image>
+            </view>
+            <view class="item">
+                <image src="../../images/share_qzone.png"></image>
+            </view>
+        </view>
+        <view class="share-list" style="margin-top:20rpx">
+            <view class="item">
+                <image src="../../images/share_weibo.png"></image>
+            </view>
+            <view class="item">
+                <image src="../../images/share_alipay.png"></image>
+            </view>
+            <view class="item">
+                <image src="../../images/share_plus.png"></image>
+            </view>
+        </view>
+    </modal>
 </view>
+<loading hidden="{{!loading}}">
+    加载中...
+</loading>
+<modal class="modal" hidden="{{modalMsgHidden}}" no-cancel bindconfirm="modalMsgHiddenEvent">
+    <view>{{modalMsg}}</view>
+</modal>
