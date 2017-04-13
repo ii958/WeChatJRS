@@ -1,2 +1,10 @@
 <!--pages/comment/comment.wxml-->
-<text>pages/comment/comment.wxml</text>
+<view class="container">
+    <view class="headline">
+        <text>{{longCommentCount}}条评论</text>
+    </view>
+</view>
+
+<view class="common-list">
+
+</view>
